@@ -1,0 +1,654 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 4
+Title "MP3 Player"
+Date "2021-02-28"
+Rev "1"
+Comp "github.com/sohunpatel"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:+3.3V #PWR?
+U 1 1 60BB3EEA
+P 6100 1850
+AR Path="/60BB3EEA" Ref="#PWR?"  Part="1" 
+AR Path="/60B83F13/60BB3EEA" Ref="#PWR0115"  Part="1" 
+F 0 "#PWR0115" H 6100 1700 50  0001 C CNN
+F 1 "+3.3V" H 6115 2023 50  0000 C CNN
+F 2 "" H 6100 1850 50  0001 C CNN
+F 3 "" H 6100 1850 50  0001 C CNN
+	1    6100 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 1850 6100 1900
+Wire Wire Line
+	6100 1900 6200 1900
+Wire Wire Line
+	6200 1900 6200 1950
+Connection ~ 6100 1900
+Wire Wire Line
+	6100 1900 6100 1950
+Wire Wire Line
+	6200 1900 6300 1900
+Wire Wire Line
+	6300 1900 6300 1950
+Connection ~ 6200 1900
+Wire Wire Line
+	6300 1900 6400 1900
+Wire Wire Line
+	6400 1900 6400 1950
+Connection ~ 6300 1900
+$Comp
+L power:GND #PWR?
+U 1 1 60BB3EFB
+P 6100 5250
+AR Path="/60BB3EFB" Ref="#PWR?"  Part="1" 
+AR Path="/60B83F13/60BB3EFB" Ref="#PWR0116"  Part="1" 
+F 0 "#PWR0116" H 6100 5000 50  0001 C CNN
+F 1 "GND" H 6105 5077 50  0000 C CNN
+F 2 "" H 6100 5250 50  0001 C CNN
+F 3 "" H 6100 5250 50  0001 C CNN
+	1    6100 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 5150 6100 5200
+Wire Wire Line
+	6200 5150 6200 5200
+Wire Wire Line
+	6200 5200 6100 5200
+Connection ~ 6100 5200
+Wire Wire Line
+	6100 5200 6100 5250
+Wire Wire Line
+	6300 5150 6300 5200
+Wire Wire Line
+	6300 5200 6200 5200
+Connection ~ 6200 5200
+Wire Wire Line
+	6400 5150 6400 5200
+Wire Wire Line
+	6400 5200 6300 5200
+Connection ~ 6300 5200
+$Comp
+L Device:C_Small C?
+U 1 1 60BB3F0C
+P 4800 2700
+AR Path="/60BB3F0C" Ref="C?"  Part="1" 
+AR Path="/60B83F13/60BB3F0C" Ref="C14"  Part="1" 
+F 0 "C14" H 4892 2746 50  0000 L CNN
+F 1 "2.2u" H 4892 2655 50  0000 L CNN
+F 2 "" H 4800 2700 50  0001 C CNN
+F 3 "~" H 4800 2700 50  0001 C CNN
+	1    4800 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 2550 4800 2600
+Wire Wire Line
+	4800 2550 5600 2550
+$Comp
+L power:GND #PWR?
+U 1 1 60BB3F14
+P 4800 2800
+AR Path="/60BB3F14" Ref="#PWR?"  Part="1" 
+AR Path="/60B83F13/60BB3F14" Ref="#PWR0117"  Part="1" 
+F 0 "#PWR0117" H 4800 2550 50  0001 C CNN
+F 1 "GND" H 4805 2627 50  0000 C CNN
+F 2 "" H 4800 2800 50  0001 C CNN
+F 3 "" H 4800 2800 50  0001 C CNN
+	1    4800 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 3950 6900 3950
+Wire Wire Line
+	6950 4050 6900 4050
+Wire Wire Line
+	6950 4150 6900 4150
+Wire Wire Line
+	6950 4950 6900 4950
+Wire Wire Line
+	6900 4850 6950 4850
+Wire Wire Line
+	6950 4650 6900 4650
+Wire Wire Line
+	6900 4550 6950 4550
+Wire Wire Line
+	5550 4150 5600 4150
+Wire Wire Line
+	5550 4250 5600 4250
+$Comp
+L Device:Crystal_GND24_Small Y?
+U 1 1 60BB3F24
+P 4300 3350
+AR Path="/60BB3F24" Ref="Y?"  Part="1" 
+AR Path="/60B83F13/60BB3F24" Ref="Y1"  Part="1" 
+F 0 "Y1" H 4000 3600 50  0000 L CNN
+F 1 "25MHz" H 4000 3500 50  0000 L CNN
+F 2 "" H 4300 3350 50  0001 C CNN
+F 3 "~" H 4300 3350 50  0001 C CNN
+	1    4300 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 3350 4050 3350
+$Comp
+L power:GND #PWR?
+U 1 1 60BB3F2B
+P 4300 3650
+AR Path="/60BB3F2B" Ref="#PWR?"  Part="1" 
+AR Path="/60B83F13/60BB3F2B" Ref="#PWR0118"  Part="1" 
+F 0 "#PWR0118" H 4300 3400 50  0001 C CNN
+F 1 "GND" H 4305 3477 50  0000 C CNN
+F 2 "" H 4300 3650 50  0001 C CNN
+F 3 "" H 4300 3650 50  0001 C CNN
+	1    4300 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 3600 4300 3650
+Connection ~ 4300 3600
+Wire Wire Line
+	4300 3600 4050 3600
+Wire Wire Line
+	4050 3400 4050 3350
+Connection ~ 4050 3350
+Wire Wire Line
+	4050 3350 4200 3350
+Wire Wire Line
+	4550 3350 4550 3400
+Connection ~ 4550 3350
+Wire Wire Line
+	4550 3350 4400 3350
+Wire Wire Line
+	4550 3600 4450 3600
+Wire Wire Line
+	4300 3250 4300 3200
+Wire Wire Line
+	4300 3200 4450 3200
+Wire Wire Line
+	4450 3200 4450 3600
+Connection ~ 4450 3600
+Wire Wire Line
+	4450 3600 4300 3600
+Wire Wire Line
+	4550 3350 4650 3350
+Wire Wire Line
+	4850 3350 4900 3350
+Wire Wire Line
+	4300 3450 4300 3600
+$Comp
+L Device:C_Small C?
+U 1 1 60BB3F43
+P 4550 3500
+AR Path="/60BB3F43" Ref="C?"  Part="1" 
+AR Path="/60B83F13/60BB3F43" Ref="C13"  Part="1" 
+F 0 "C13" H 4642 3546 50  0000 L CNN
+F 1 "22pf" H 4642 3455 50  0000 L CNN
+F 2 "" H 4550 3500 50  0001 C CNN
+F 3 "~" H 4550 3500 50  0001 C CNN
+	1    4550 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 60BB3F49
+P 4050 3500
+AR Path="/60BB3F49" Ref="C?"  Part="1" 
+AR Path="/60B83F13/60BB3F49" Ref="C12"  Part="1" 
+F 0 "C12" H 3900 3550 50  0000 L CNN
+F 1 "22pf" H 3800 3450 50  0000 L CNN
+F 2 "" H 4050 3500 50  0001 C CNN
+F 3 "~" H 4050 3500 50  0001 C CNN
+	1    4050 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 2850 5600 2850
+Wire Wire Line
+	5550 2950 5600 2950
+$Comp
+L Device:R_Small R?
+U 1 1 60BB3F5F
+P 4750 3350
+AR Path="/60BB3F5F" Ref="R?"  Part="1" 
+AR Path="/60B83F13/60BB3F5F" Ref="R4"  Part="1" 
+F 0 "R4" V 4946 3350 50  0000 C CNN
+F 1 "220" V 4855 3350 50  0000 C CNN
+F 2 "" H 4750 3350 50  0001 C CNN
+F 3 "~" H 4750 3350 50  0001 C CNN
+	1    4750 3350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6950 4750 6900 4750
+Wire Wire Line
+	6950 3750 6900 3750
+Wire Wire Line
+	6900 3650 6950 3650
+Wire Wire Line
+	6950 3550 6900 3550
+Wire Wire Line
+	6900 3450 6950 3450
+Text Label 5550 2850 2    50   ~ 0
+HSE_IN
+Text Label 4900 3350 0    50   ~ 0
+HSE_IN
+Text Label 5550 2950 2    50   ~ 0
+HSE_OUT
+Text Label 4000 3350 2    50   ~ 0
+HSE_OUT
+Text Label 5550 2350 2    50   ~ 0
+BOOT0
+Text Label 5550 2150 2    50   ~ 0
+NRST
+Text HLabel 5550 4150 0    50   Output ~ 0
+AUDIO_CODEC_MOSI
+Text HLabel 5550 4250 0    50   Output ~ 0
+AUDIO_CODEC_SCLK
+Text HLabel 6950 3450 2    50   Output ~ 0
+BT_CTS
+Text HLabel 6950 3650 2    50   Output ~ 0
+BT_TX
+Text HLabel 6950 3950 2    50   Output ~ 0
+uSD_SCLK
+Text HLabel 6950 4150 2    50   Output ~ 0
+uSD_MOSI
+Text HLabel 6950 3550 2    50   Input ~ 0
+BT_RTS
+Text HLabel 6950 3750 2    50   Input ~ 0
+BT_RX
+Text HLabel 6950 4050 2    50   Input ~ 0
+uSD_MISO
+Text HLabel 6950 4550 2    50   BiDi ~ 0
+USB_OTG_FS_D-
+Text HLabel 6950 4650 2    50   BiDi ~ 0
+USB_OTG_FS_D+
+Text Label 6950 4750 0    50   ~ 0
+SYS_ITDO-SWO
+Text Label 6950 4850 0    50   ~ 0
+SYS_ITDO-SWCLK
+Text Label 6950 4950 0    50   ~ 0
+SYS_ITMS-SWDIO
+$Comp
+L Connector:Conn_ARM_JTAG_SWD_10 J?
+U 1 1 60BE21B8
+P 9100 3650
+AR Path="/60BE21B8" Ref="J?"  Part="1" 
+AR Path="/60B83F13/60BE21B8" Ref="J4"  Part="1" 
+F 0 "J4" H 8657 3696 50  0000 R CNN
+F 1 "Conn_ARM_JTAG_SWD_10" H 8657 3605 50  0000 R CNN
+F 2 "" H 9100 3650 50  0001 C CNN
+F 3 "http://infocenter.arm.com/help/topic/com.arm.doc.ddi0314h/DDI0314H_coresight_components_trm.pdf" V 8750 2400 50  0001 C CNN
+	1    9100 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 60BE21BE
+P 9100 3000
+AR Path="/60BE21BE" Ref="#PWR?"  Part="1" 
+AR Path="/60B83F13/60BE21BE" Ref="#PWR0119"  Part="1" 
+F 0 "#PWR0119" H 9100 2850 50  0001 C CNN
+F 1 "+3.3V" H 9115 3173 50  0000 C CNN
+F 2 "" H 9100 3000 50  0001 C CNN
+F 3 "" H 9100 3000 50  0001 C CNN
+	1    9100 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 3000 9100 3050
+Wire Wire Line
+	9650 3350 9600 3350
+Wire Wire Line
+	9650 3750 9600 3750
+Wire Wire Line
+	9600 3650 9650 3650
+Wire Wire Line
+	9650 3550 9600 3550
+$Comp
+L power:GND #PWR?
+U 1 1 60BE21CD
+P 9000 4350
+AR Path="/60BE21CD" Ref="#PWR?"  Part="1" 
+AR Path="/60B83F13/60BE21CD" Ref="#PWR0120"  Part="1" 
+F 0 "#PWR0120" H 9000 4100 50  0001 C CNN
+F 1 "GND" H 9005 4177 50  0000 C CNN
+F 2 "" H 9000 4350 50  0001 C CNN
+F 3 "" H 9000 4350 50  0001 C CNN
+	1    9000 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9000 4350 9000 4300
+Wire Wire Line
+	9100 4250 9100 4300
+Wire Wire Line
+	9100 4300 9000 4300
+Connection ~ 9000 4300
+Wire Wire Line
+	9000 4300 9000 4250
+NoConn ~ 9600 3850
+Text Label 9650 3350 0    50   ~ 0
+NRST
+Text Label 9650 3550 0    50   ~ 0
+SYS_ITCK-SWCLK
+Text Label 9650 3650 0    50   ~ 0
+SYS_ITMS-SWDIO
+Text Label 9650 3750 0    50   ~ 0
+SYS_ITDO-SWO
+$Comp
+L MCU_ST_STM32F4:STM32F401CBUx U4
+U 1 1 603E248D
+P 6300 3550
+F 0 "U4" H 5450 5250 50  0000 C CNN
+F 1 "STM32F401CBUx" H 5700 5150 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.6x5.6mm" H 5700 2050 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00086815.pdf" H 6300 3550 50  0001 C CNN
+	1    6300 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 2150 5600 2150
+Wire Wire Line
+	5600 2350 5550 2350
+$Comp
+L Switch:SW_Push SW2
+U 1 1 605C88A6
+P 1800 2900
+F 0 "SW2" V 1846 2852 50  0000 R CNN
+F 1 "SW_Push" V 1755 2852 50  0000 R CNN
+F 2 "" H 1800 3100 50  0001 C CNN
+F 3 "~" H 1800 3100 50  0001 C CNN
+	1    1800 2900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C_Small C19
+U 1 1 605D1EBC
+P 2400 2900
+F 0 "C19" H 2492 2946 50  0000 L CNN
+F 1 "100n" H 2492 2855 50  0000 L CNN
+F 2 "" H 2400 2900 50  0001 C CNN
+F 3 "~" H 2400 2900 50  0001 C CNN
+	1    2400 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R8
+U 1 1 605D258F
+P 1800 2500
+F 0 "R8" H 1650 2550 50  0000 L CNN
+F 1 "160" H 1600 2450 50  0000 L CNN
+F 2 "" H 1800 2500 50  0001 C CNN
+F 3 "~" H 1800 2500 50  0001 C CNN
+	1    1800 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR03
+U 1 1 605D2CBD
+P 1800 2300
+F 0 "#PWR03" H 1800 2150 50  0001 C CNN
+F 1 "+3.3V" H 1815 2473 50  0000 C CNN
+F 2 "" H 1800 2300 50  0001 C CNN
+F 3 "" H 1800 2300 50  0001 C CNN
+	1    1800 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 2300 1800 2400
+Wire Wire Line
+	1800 2600 1800 2650
+$Comp
+L Device:R_Small R11
+U 1 1 605D630E
+P 2100 2650
+F 0 "R11" V 1904 2650 50  0000 C CNN
+F 1 "160" V 1995 2650 50  0000 C CNN
+F 2 "" H 2100 2650 50  0001 C CNN
+F 3 "~" H 2100 2650 50  0001 C CNN
+	1    2100 2650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2400 2800 2400 2650
+Wire Wire Line
+	2400 2650 2200 2650
+Wire Wire Line
+	2000 2650 1800 2650
+Connection ~ 1800 2650
+Wire Wire Line
+	1800 2650 1800 2700
+Wire Wire Line
+	1800 3100 1800 3150
+$Comp
+L power:GND #PWR05
+U 1 1 605DAE12
+P 1800 3200
+F 0 "#PWR05" H 1800 2950 50  0001 C CNN
+F 1 "GND" H 1805 3027 50  0000 C CNN
+F 2 "" H 1800 3200 50  0001 C CNN
+F 3 "" H 1800 3200 50  0001 C CNN
+	1    1800 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 3150 2400 3150
+Wire Wire Line
+	2400 3150 2400 3000
+Connection ~ 1800 3150
+Wire Wire Line
+	1800 3150 1800 3200
+Text Label 2500 2650 0    50   ~ 0
+FORWARD
+Wire Wire Line
+	2500 2650 2400 2650
+Connection ~ 2400 2650
+$Comp
+L Switch:SW_Push SW4
+U 1 1 605E99FC
+P 1800 5700
+F 0 "SW4" V 1846 5652 50  0000 R CNN
+F 1 "SW_Push" V 1755 5652 50  0000 R CNN
+F 2 "" H 1800 5900 50  0001 C CNN
+F 3 "~" H 1800 5900 50  0001 C CNN
+	1    1800 5700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C_Small C21
+U 1 1 605E9A06
+P 2400 5700
+F 0 "C21" H 2492 5746 50  0000 L CNN
+F 1 "100n" H 2492 5655 50  0000 L CNN
+F 2 "" H 2400 5700 50  0001 C CNN
+F 3 "~" H 2400 5700 50  0001 C CNN
+	1    2400 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R10
+U 1 1 605E9A10
+P 1800 5300
+F 0 "R10" H 1600 5350 50  0000 L CNN
+F 1 "160" H 1600 5250 50  0000 L CNN
+F 2 "" H 1800 5300 50  0001 C CNN
+F 3 "~" H 1800 5300 50  0001 C CNN
+	1    1800 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR08
+U 1 1 605E9A1A
+P 1800 5100
+F 0 "#PWR08" H 1800 4950 50  0001 C CNN
+F 1 "+3.3V" H 1815 5273 50  0000 C CNN
+F 2 "" H 1800 5100 50  0001 C CNN
+F 3 "" H 1800 5100 50  0001 C CNN
+	1    1800 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 5100 1800 5200
+Wire Wire Line
+	1800 5400 1800 5450
+$Comp
+L Device:R_Small R13
+U 1 1 605E9A26
+P 2100 5450
+F 0 "R13" V 1904 5450 50  0000 C CNN
+F 1 "160" V 1995 5450 50  0000 C CNN
+F 2 "" H 2100 5450 50  0001 C CNN
+F 3 "~" H 2100 5450 50  0001 C CNN
+	1    2100 5450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2400 5600 2400 5450
+Wire Wire Line
+	2400 5450 2200 5450
+Wire Wire Line
+	2000 5450 1800 5450
+Connection ~ 1800 5450
+Wire Wire Line
+	1800 5450 1800 5500
+Wire Wire Line
+	1800 5900 1800 5950
+$Comp
+L power:GND #PWR09
+U 1 1 605E9A36
+P 1800 6000
+F 0 "#PWR09" H 1800 5750 50  0001 C CNN
+F 1 "GND" H 1805 5827 50  0000 C CNN
+F 2 "" H 1800 6000 50  0001 C CNN
+F 3 "" H 1800 6000 50  0001 C CNN
+	1    1800 6000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 5950 2400 5950
+Wire Wire Line
+	2400 5950 2400 5800
+Connection ~ 1800 5950
+Wire Wire Line
+	1800 5950 1800 6000
+Text Label 2500 5450 0    50   ~ 0
+BACK
+Wire Wire Line
+	2500 5450 2400 5450
+Connection ~ 2400 5450
+$Comp
+L Switch:SW_Push SW3
+U 1 1 605F4F3D
+P 1800 4300
+F 0 "SW3" V 1846 4252 50  0000 R CNN
+F 1 "SW_Push" V 1755 4252 50  0000 R CNN
+F 2 "" H 1800 4500 50  0001 C CNN
+F 3 "~" H 1800 4500 50  0001 C CNN
+	1    1800 4300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C_Small C20
+U 1 1 605F4F47
+P 2400 4300
+F 0 "C20" H 2492 4346 50  0000 L CNN
+F 1 "100n" H 2492 4255 50  0000 L CNN
+F 2 "" H 2400 4300 50  0001 C CNN
+F 3 "~" H 2400 4300 50  0001 C CNN
+	1    2400 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R9
+U 1 1 605F4F51
+P 1800 3900
+F 0 "R9" H 1650 3950 50  0000 L CNN
+F 1 "160" H 1600 3850 50  0000 L CNN
+F 2 "" H 1800 3900 50  0001 C CNN
+F 3 "~" H 1800 3900 50  0001 C CNN
+	1    1800 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR06
+U 1 1 605F4F5B
+P 1800 3700
+F 0 "#PWR06" H 1800 3550 50  0001 C CNN
+F 1 "+3.3V" H 1815 3873 50  0000 C CNN
+F 2 "" H 1800 3700 50  0001 C CNN
+F 3 "" H 1800 3700 50  0001 C CNN
+	1    1800 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 3700 1800 3800
+Wire Wire Line
+	1800 4000 1800 4050
+$Comp
+L Device:R_Small R12
+U 1 1 605F4F67
+P 2100 4050
+F 0 "R12" V 1904 4050 50  0000 C CNN
+F 1 "160" V 1995 4050 50  0000 C CNN
+F 2 "" H 2100 4050 50  0001 C CNN
+F 3 "~" H 2100 4050 50  0001 C CNN
+	1    2100 4050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2400 4200 2400 4050
+Wire Wire Line
+	2400 4050 2200 4050
+Wire Wire Line
+	2000 4050 1800 4050
+Connection ~ 1800 4050
+Wire Wire Line
+	1800 4050 1800 4100
+Wire Wire Line
+	1800 4500 1800 4550
+$Comp
+L power:GND #PWR07
+U 1 1 605F4F77
+P 1800 4600
+F 0 "#PWR07" H 1800 4350 50  0001 C CNN
+F 1 "GND" H 1805 4427 50  0000 C CNN
+F 2 "" H 1800 4600 50  0001 C CNN
+F 3 "" H 1800 4600 50  0001 C CNN
+	1    1800 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 4550 2400 4550
+Wire Wire Line
+	2400 4550 2400 4400
+Connection ~ 1800 4550
+Wire Wire Line
+	1800 4550 1800 4600
+Text Label 2500 4050 0    50   ~ 0
+PAUSE_PLAY
+Wire Wire Line
+	2500 4050 2400 4050
+Connection ~ 2400 4050
+Text Label 5550 4650 2    50   ~ 0
+FORWARD
+Wire Wire Line
+	5550 4650 5600 4650
+Text Label 5550 4750 2    50   ~ 0
+PAUSE_PLAY
+Wire Wire Line
+	5550 4750 5600 4750
+Text Label 5550 4850 2    50   ~ 0
+BACK
+Wire Wire Line
+	5550 4850 5600 4850
+$EndSCHEMATC

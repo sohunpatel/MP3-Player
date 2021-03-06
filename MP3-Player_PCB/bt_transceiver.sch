@@ -1,0 +1,182 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 4
+Title "MP3 Player"
+Date "2021-02-28"
+Rev "1"
+Comp "github.com/sohunpatel"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L RF_Bluetooth:RN42 U3
+U 1 1 60CA4A22
+P 5800 3950
+F 0 "U3" H 5800 5017 50  0000 C CNN
+F 1 "RN42" H 5800 4926 50  0000 C CNN
+F 2 "RF_Module:RN42" H 5750 4800 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/rn-42-ds-v2.32r.pdf" H 5800 3150 50  0001 C CNN
+	1    5800 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 60CA4A28
+P 4800 4450
+F 0 "#PWR0110" H 4800 4200 50  0001 C CNN
+F 1 "GND" H 4805 4277 50  0000 C CNN
+F 2 "" H 4800 4450 50  0001 C CNN
+F 3 "" H 4800 4450 50  0001 C CNN
+	1    4800 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 4450 4800 4350
+Wire Wire Line
+	4800 4350 5100 4350
+Wire Wire Line
+	5100 3250 4800 3250
+Wire Wire Line
+	4800 3250 4800 4350
+Connection ~ 4800 4350
+$Comp
+L power:GND #PWR0111
+U 1 1 60CA4A33
+P 5700 5050
+F 0 "#PWR0111" H 5700 4800 50  0001 C CNN
+F 1 "GND" H 5705 4877 50  0000 C CNN
+F 2 "" H 5700 5050 50  0001 C CNN
+F 3 "" H 5700 5050 50  0001 C CNN
+	1    5700 5050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5700 5050 5700 4950
+Wire Wire Line
+	6200 4850 6200 4950
+Wire Wire Line
+	6200 4950 5700 4950
+Connection ~ 5700 4950
+Wire Wire Line
+	5700 4950 5700 4850
+Wire Wire Line
+	6550 4050 6500 4050
+Wire Wire Line
+	6550 4150 6500 4150
+Wire Wire Line
+	6550 4350 6500 4350
+Wire Wire Line
+	6500 4250 6550 4250
+NoConn ~ 5100 3850
+NoConn ~ 5100 3950
+NoConn ~ 5100 4050
+NoConn ~ 5100 4150
+NoConn ~ 5100 3750
+NoConn ~ 6500 3350
+NoConn ~ 6500 3250
+NoConn ~ 5100 3350
+NoConn ~ 6500 3850
+NoConn ~ 6500 3950
+$Comp
+L power:+3.3V #PWR0112
+U 1 1 60CA4A50
+P 4850 3150
+F 0 "#PWR0112" H 4850 3000 50  0001 C CNN
+F 1 "+3.3V" H 4865 3323 50  0000 C CNN
+F 2 "" H 4850 3150 50  0001 C CNN
+F 3 "" H 4850 3150 50  0001 C CNN
+	1    4850 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 3150 4850 3450
+Wire Wire Line
+	4850 4250 5100 4250
+$Comp
+L Device:Jumper_NO_Small JP1
+U 1 1 60CA4A58
+P 6800 3450
+F 0 "JP1" H 6800 3635 50  0000 C CNN
+F 1 "Factory Reset" H 6800 3544 50  0000 C CNN
+F 2 "" H 6800 3450 50  0001 C CNN
+F 3 "~" H 6800 3450 50  0001 C CNN
+	1    6800 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 3450 6500 3450
+$Comp
+L power:+3.3V #PWR0113
+U 1 1 60CA4A5F
+P 7250 3350
+F 0 "#PWR0113" H 7250 3200 50  0001 C CNN
+F 1 "+3.3V" H 7265 3523 50  0000 C CNN
+F 2 "" H 7250 3350 50  0001 C CNN
+F 3 "" H 7250 3350 50  0001 C CNN
+	1    7250 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 3350 7250 3450
+Wire Wire Line
+	7250 3450 6900 3450
+$Comp
+L Device:R_Small R3
+U 1 1 60CA4A67
+P 7450 3550
+F 0 "R3" V 7646 3550 50  0000 C CNN
+F 1 "1k" V 7555 3550 50  0000 C CNN
+F 2 "" H 7450 3550 50  0001 C CNN
+F 3 "~" H 7450 3550 50  0001 C CNN
+	1    7450 3550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6500 3550 7350 3550
+$Comp
+L Device:LED_Small D3
+U 1 1 60CA4A6E
+P 7800 3550
+F 0 "D3" H 7800 3785 50  0000 C CNN
+F 1 "LED_Blue" H 7800 3694 50  0000 C CNN
+F 2 "" V 7800 3550 50  0001 C CNN
+F 3 "~" V 7800 3550 50  0001 C CNN
+	1    7800 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7700 3550 7550 3550
+$Comp
+L power:+3.3V #PWR0114
+U 1 1 60CA4A75
+P 8100 3450
+F 0 "#PWR0114" H 8100 3300 50  0001 C CNN
+F 1 "+3.3V" H 8115 3623 50  0000 C CNN
+F 2 "" H 8100 3450 50  0001 C CNN
+F 3 "" H 8100 3450 50  0001 C CNN
+	1    8100 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 3450 8100 3550
+Wire Wire Line
+	8100 3550 7900 3550
+Wire Wire Line
+	5100 3450 4850 3450
+Connection ~ 4850 3450
+Wire Wire Line
+	4850 3450 4850 4250
+Text HLabel 6550 4050 2    50   Output ~ 0
+UART_CTS
+Text HLabel 6550 4150 2    50   Input ~ 0
+UART_RTS
+Text HLabel 6550 4250 2    50   Output ~ 0
+UART_TX
+Text HLabel 6550 4350 2    50   Input ~ 0
+UART_RX
+$EndSCHEMATC

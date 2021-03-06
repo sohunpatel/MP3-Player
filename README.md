@@ -1,1 +1,0 @@
-This project is a MP3 Player for STM32F7.
