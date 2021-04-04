@@ -6,174 +6,187 @@
  *----------------------------------------------------------------------------*/
 
 /*----- Includes -------------------------------------------------------------*/
-#include "core_cm7.h"
 
-/*----- Peripheral Register Definitions --------------------------------------*/
+/*----- Memory Mapped Definitions --------------------------------------------*/
+#define ITCM_RAM_BASE       0x00000000U // 16kB of RAM reserved for CPU instructions
+#define ITCM_FLASH_BASE     0x00200000U // Up to 1MB FLASH over ITCM
+#define AXIM_FLASH_BASE     0x08000000U // Up to 1MB FLASH over AXIM
+#define FLASH_END           0x080FFFFFU // FLASH end address
+#define FLASH_OTP_BASE      0x1FF0F000U // Up to 1024 bytes of FLASH OTP Area
+#define FLASH_OTP_END       0x1FF0F41FU // End of FLASH OTP Area
+#define DTCM_BASE           0x20000000U // 64kB system data RAM over DTCM
+#define SRAM1_BASE          0x20010000U // 240kB of RAM1 over AXI / AHB
+#define SRAM2_BASE          0x2004C000U // 16kB of RAM2 over AXI / AHB
+#define PERIPHERAL_BASE     0x40000000U // APB / AHB address
+#define BACKUP_SRAM_BASE    0x40024000U // 4kB of backup SRAM
+#define QSPI_BASE           0x90000000U // QSPI memory address
+#define FMC_REGISTER_BASE   0xA0000000U // FMC register address
+#define QSPI_REGISTER_BASE  0xA0001000U // QSPI register address
 
-/*----- Flash Registers ------------------------------------------------------*/
-typedef struct {
-    __IO uint32_t ACR;     // Access control register
-    __IO uint32_t KEYR;    // Key register
-    __IO uint32_t OPTKEYR; // Option key register
-    __IO uint32_t SR;      // Status register
-    __IO uint32_t CR;      // Control register
-    __IO uint32_t OPTCR;   // Option control register
-    __IO uint32_t OPTCR1;  // Option control register
-} Flash_Registers;
+/*----- Peripheral Memory Map ------------------------------------------------*/
+#define APB1                PERIPHERAL_BASE
+#define APB2                (PERIPHERAL_BASE + 0x00010000U)
+#define AHB1                (PERIPHERAL_BASE + 0x00020000U)
+#define AHB2                (PERIPHERAL_BASE + 0x10000000U)
 
-/*----- GPIOx Registers ------------------------------------------------------*/
-typedef struct {
-    __IO uint32_t MODER;    // Port mode register
-    __IO uint32_t OTYPER;   // Port output type register
-    __IO uint32_t OSPEEDR;  // Port output speed register
-    __IO uint32_t PUPDR;    // Port pull-up/pull-down register
-    __IO uint32_t IDR;      // Port input data register
-    __IO uint32_t ODR;      // Port output data register
-    __IO uint32_t BSRR;     // Port bit set/reset register
-    __IO uint32_t LCKR;     // Port configuration lock register
-    __IO uint32_t AFR[2];   // Alternate function registers
-} GPIOx_Registers;
+/*----- APB1 Memory Map ------------------------------------------------------*/
+#define TIM2_BASE           APB1
+#define TIM3_BASE           (APB1 + 0x0400U)
+#define TIM4_BASE           (APB1 + 0x0800U)
+#define TIM5_BASE           (APB1 + 0x0C00U)
+#define TIM6_BASE           (APB1 + 0x1000U)
+#define TIM7_BASE           (APB1 + 0x1400U)
+#define TIM12_BASE          (APB1 + 0x1800U)
+#define TIM13_BASE          (APB1 + 0x1C00U)
+#define TIM14_BASE          (APB1 + 0x2000U)
+#define LPTIM_BASE          (APB1 + 0x2400U)
+#define RTC_BASE            (APB1 + 0x2800U)
+#define WWDG_BASE           (APB1 + 0x2C00U)
+#define IWDG_BASE           (APB1 + 0x3000U)
+#define SPI2_BASE           (APB1 + 0x3800U)
+#define SPI3_BASE           (APB1 + 0x3C00U)
+#define SPDIFRX_BASE        (APB1 + 0x4000U)
+#define USART2_BASE         (APB1 + 0x4400U)
+#define USART3_BASE         (APB1 + 0x4800U)
+#define UART4_BASE          (APB1 + 0x4C00U)
+#define UART5_BASE          (APB1 + 0x5000U)
+#define I2C1_BASE           (APB1 + 0x5400U)
+#define I2C2_BASE           (APB1 + 0x5800U)
+#define I2C3_BASE           (APB1 + 0x5C00U)
+#define I2C4_BASE           (APB1 + 0x6000U)
+#define CAN1_BASE           (APB1 + 0x6400U)
+#define CAN2_BASE           (APB1 + 0x6800U)
+#define HDMI_BASE           (APB1 + 0x6C00U)
+#define POWER_BASE          (APB1 + 0x7000U)
+#define DAC_BASE            (APB1 + 0x7400U)
+#define UART7_BASE          (APB1 + 0x7800U)
+#define UART8_BASE          (APB1 + 0x7C00U)
 
-/*----- LTDC Registers -------------------------------------------------------*/
-typedef struct {
-         uint32_t RESERVED[2]; // 0x00 -> 0x04 reserved
-    __IO uint32_t SSCR;        // Syrnchronization size configuration register
-    __IO uint32_t BPCR;        // Back porch configuration register
-    __IO uint32_t AWCR;        // Active width configuration register
-    __IO uint32_t TWCR;        // Total width configuration register
-    __IO uint32_t GCR;         // Global control register
-         uint32_t RESERVED[2]; // 0x1C -> 0x20 reserved
-    __IO uint32_t SRCR;        // Shadow reload configuration register
-         uint32_t RESERVED[1]; // 0x28 reserved
-    __IO uint32_t BCCR;        // Background color configuration register
-         uint32_t RESERVED[1]; // 0x30 reserved
-    __IO uint32_t IER;         // Interrupt enable register
-    __IO uint32_t ISR;         // Interrupt status register
-    __IO uint32_t ICR;         // Interrupt clear register
-    __IO uint32_t LIPCR;       // Line interrupt position configuration register
-    __IO uint32_t CPSR;        // Current position status register
-} LTDC_Registers;
+/*----- APB2 Memory Map ------------------------------------------------------*/
+#define TIM1_BASE           APB2
+#define TIM8_BASE           (APB2 + 0x0400U)
+#define USART1_BASE         (APB2 + 0x1000U)
+#define USART6_BASE         (APB2 + 0x1400U)
+#define ADC1_BASE           (APB2 + 0x2000U)
+#define ADC2_BASE           (APB2 + 0x2100U)
+#define ADC3_BASE           (APB2 + 0x2200U)
+#define ADC_BASE            (APB2 + 0x2300U)
+#define SDMMC_BASE          (APB2 + 0x2C00U)
+#define SPI1_BASE           (APB2 + 0x3000U)
+#define SPI4_BASE           (APB2 + 0x3400U)
+#define SYSCFG_BASE         (APB2 + 0x3800U)
+#define EXTI_BASE           (APB2 + 0x3C00U)
+#define TIM9_BASE           (APB2 + 0x4000U)
+#define TIM10_BASE          (APB2 + 0x4400U)
+#define TIM11_BASE          (APB2 + 0x4800U)
+#define SPI5_BASE           (APB2 + 0x5000U)
+#define SPI6_BASE           (APB2 + 0x5400U)
+#define SAI1_BASE           (APB2 + 0x5800U)
+#define SAI2_BASE           (APB2 + 0x5C00U)
+#define SAI1_Block_A_BASE   (SAI1_BASE + 0x004U)
+#define SAI1_Block_B_BASE   (SAI1_BASE + 0x024U)
+#define SAI2_Block_A_BASE   (SAI2_BASE + 0x004U)
+#define SAI2_Block_B_BASE   (SAI2_BASE + 0x024U)
+#define LTDC_BASE           (APB2 + 0x6800U)
+#define LTDC_Layer1_BASE    (LTDC_BASE + 0x84U)
+#define LTDC_Layer2_BASE    (LTDC_BASE + 0x104U)
 
-/*----- RCC Registers --------------------------------------------------------*/
-typedef struct {
-    __IO uint32_t CR;           // Clock control register
-    __IO uint32_t PLLCFGR;      // PLL configuration register
-    __IO uint32_t CFGR;         // Clock configuration register
-    __IO uint32_t CIR;          // Clock interrupt register
-    __IO uint32_t AHB1RSTR;     // AHB1 peripheral reset register
-    __IO uint32_t AHB2RSTR;     // AHB2 peripheral reset register
-    __IO uint32_t AHB3RSTR;     // AHB3 peripheral reset register
-         uint32_t RESERVED0[1]; // 0x1C reserved
-    __IO uint32_t APB1RSTR;     // APB1 peripheral reset register
-    __IO uint32_t APB2RSTR;     // APB2 peripheral reset register
-         uint32_t RESERVED1[2]; // 0x28 -> 0x2C reserved
-    __IO uint32_t AHB1ENR;      // AHB1 peripheral clock enable register
-    __IO uint32_t AHB2ENR;      // AHB2 peripheral clock enable register
-    __IO uint32_t AHB3ENR;      // AHB3 peripheral clock enable register
-         uint32_t RESERVED2[1]; // 0x3C reserved
-    __IO uint32_t APB1ENR;      // APB1 peripheral clock enable register
-    __IO uint32_t APB2ENR;      // APB2 peripheral clock enable register
-         uint32_t RESERVED3[2]; // 0x48 -> 0x4C reserved
-    __IO uint32_t AHB1LPENR;    // AHB1 peripheral clock enable in low-power mode register
-    __IO uint32_t AHB2LPENR;    // AHB2 peripheral clock enable in low-power mode register
-    __IO uint32_t AHB3LPENR;    // AHB3 peripheral clock enable in low-power mode register
-         uint32_t RESERVED4[1]; // 0x5C reserved
-    __IO uint32_t APB1LPENR;    // APB1 peripheral clock enable in low-power mode register
-    __IO uint32_t APB2LPENR;    // APB2 peripheral clock enable in low-power mode register
-         uint32_t RESERVED5[2]; // 0x68 -> 0x6C reserved
-    __IO uint32_t BDCR;         // Backup domain control register
-    __IO uint32_t CSR;          // Control and status register
-         uint32_t RESERVED6[2]; // 0x7D -> 0x7C reserved
-    __IO uint32_t SSCGR;        // Spread spectrum clock generation register
-    __IO uint32_t PLLI2SCFGR;   // PLL12S configuration register
-    __IO uint32_t PLLSAICFGR;   // PLLSAI configuration register
-    __IO uint32_t DCKCFGR1;     // RCC dedicated clock configuration register
-    __IO uint32_t DCKCFGR2;     // RCC dedicated clock configuration register
-} RCC_Registers;
+/*----- AHB1 Memory Map ------------------------------------------------------*/
+#define GPIOA_BASE          AHB1
+#define GPIOB_BASE          (AHB1 + 0x0400U)
+#define GPIOC_BASE          (AHB1 + 0x0800U)
+#define GPIOD_BASE          (AHB1 + 0x0C00U)
+#define GPIOE_BASE          (AHB1 + 0x1000U)
+#define GPIOF_BASE          (AHB1 + 0x1400U)
+#define GPIOG_BASE          (AHB1 + 0x1800U)
+#define GPIOH_BASE          (AHB1 + 0x1C00U)
+#define GPIOI_BASE          (AHB1 + 0x2000U)
+#define GPIOJ_BASE          (AHB1 + 0x2400U)
+#define GPIOK_BASE          (AHB1 + 0x2800U)
+#define CRC_BASE            (AHB1 + 0x3000U)
+#define RCC_BASE            (AHB1 + 0x3800U)
+#define FLASH_REGISTER_BASE (AHB1 + 0x3C00U)
+#define UID_BASE            0x1FF0F420U
+#define FLASHSIZE_BASE      0x1FF0F442U
+#define PACKAGE_BASE        0x1FFF7BF0U
+#define DMA1_BASE           (AHB1 + 0x6000U)
+#define DMA1_Stream0_BASE   (DMA1_BASE + 0x010U)
+#define DMA1_Stream1_BASE   (DMA1_BASE + 0x028U)
+#define DMA1_Stream2_BASE   (DMA1_BASE + 0x040U)
+#define DMA1_Stream3_BASE   (DMA1_BASE + 0x058U)
+#define DMA1_Stream4_BASE   (DMA1_BASE + 0x070U)
+#define DMA1_Stream5_BASE   (DMA1_BASE + 0x088U)
+#define DMA1_Stream6_BASE   (DMA1_BASE + 0x0A0U)
+#define DMA1_Stream7_BASE   (DMA1_BASE + 0x0B8U)
+#define DMA2_BASE           (AHB1 + 0x6400U)
+#define DMA2_Stream0_BASE   (DMA2_BASE + 0x010U)
+#define DMA2_Stream1_BASE   (DMA2_BASE + 0x028U)
+#define DMA2_Stream2_BASE   (DMA2_BASE + 0x040U)
+#define DMA2_Stream3_BASE   (DMA2_BASE + 0x058U)
+#define DMA2_Stream4_BASE   (DMA2_BASE + 0x070U)
+#define DMA2_Stream5_BASE   (DMA2_BASE + 0x088U)
+#define DMA2_Stream6_BASE   (DMA2_BASE + 0x0A0U)
+#define DMA2_Stream7_BASE   (DMA2_BASE + 0x0B8U)
+#define ETHERNET_BASE       (AHB1 + 0x8000U)
+#define ETH_MAC_BASE        ETH_BASE
+#define ETH_MMC_BASE        (ETH_BASE + 0x0100U)
+#define ETH_PTP_BASE        (ETH_BASE + 0x0700U)
+#define ETH_DMA_BASE        (ETH_BASE + 0x1000U)
+#define DMA2D_BASE          (AHB1 + 0xB000)
 
-/*----- SDMMC Registers ------------------------------------------------------*/
-typedef struct {
-    __IO uint32_t POWER;   // Power control register
-    __IO uint32_t CLKCR;   // Clock control register
-    __IO uint32_t ARG;     // Argument register
-    __IO uint32_t CMD;     // Command register
-    __IO uint32_t RESPCMD; // Command response register
-    __IO uint32_t RESP1;   // Response 1 register
-    __IO uint32_t RESP2;   // Response 2 register
-    __IO uint32_t RESP3;   // Response 3 register
-    __IO uint32_t RESP4;   // Response 4 register
-    __IO uint32_t DTIMER;  // Data timer register
-    __IO uint32_t DLEN;    // Data length register
-    __IO uint32_t DCTRL;   // Data control register
-    __IO uint32_t DCOUNT;  // Data counter register
-    __IO uint32_t STA;     // Status register
-    __IO uint32_t ICR;     // Interrupt clear register
-    __IO uint32_t MASK;    // Mask register
-    __IO uint32_t FIFOCNT; // FIFO count register
-    __IO uint32_t FIFO;    // Data FIFO register
-} SDMMC_Registers;
+/*----- AHB2 Memory Map ------------------------------------------------------*/
+#define DCMI_BASE           (AHB2 + 0x50000U)
+#define RNG_BASE            (AHB2 + 0x60800U)
 
-/*----- SYSCFG Register ------------------------------------------------------*/
-typedef struct {
-    __IO uint32_t MEMRMP;   // Memory remap register
-    __IO uint32_t PMC;      // Peripheral mode configuration register
-    __IO uint32_t EXTICR1;  // External interrupt configuration register 1
-    __IO uint32_t EXTICR2;  // External interrupt configuration register 2
-    __IO uint32_t EXTICR3;  // External interrupt configuration register 3
-    __IO uint32_t EXTICR4;  // External interrupt configuration register 4
-         uint32_t RESERVED; // 0x18 reserved
-    __IO uint32_t CMPCR;    // Compensation cell control register
-} SYSCFG_Registers;
+/*----- FMC Memory Map -------------------------------------------------------*/
+#define FMC_Bank1_R_BASE    (FMC_REGISTER_BASE + 0x0000U)
+#define FMC_Bank1E_R_BASE   (FMC_REGISTER_BASE + 0x0104U)
+#define FMC_Bank3_R_BASE    (FMC_REGISTER_BASE + 0x0080U)
+#define FMC_Bank5_6_R_BASE  (FMC_REGISTER_BASE + 0x0140U)
 
-/*----- USB OTG Core Registers -----------------------------------------------*/
-typedef struct {
-    __IO uint32_t GOTGCTL;            // Control and status register
-    __IO uint32_t GOTGINT;            // Interrupt register
-    __IO uint32_t GAHBCFG;            // AHB configuration register
-    __IO uint32_t GUSBCFG;            // Configuration register
-    __IO uint32_t GRSTCTL;            // Reset register
-    __IO uint32_t GINTSTS;            // Interrupt register
-    __IO uint32_t GINTMSK;            // Interrupt mask register
-    __IO uint32_t GRXSTSR;            // Receive status debug read register
-    __IO uint32_t GRXSTSP;            // Receive status read and pop register
-    __IO uint32_t GRXFSIZ;            // Receive fifo size register
-    __IO uint32_t DIEPTXF0_HNPTXFSIZ; // EP0 / Non-Periodic Tx FIFO size register
-    __IO uint32_t HNPTXSTS;           // Non Periodic Tx FIFO / Queue statuss register
-    uint32_t Reserved30[2];           // 0x030 -> 0x34 reserved
-    __IO uint32_t GCCFG;              // General core configuration register
-    __IO uint32_t CID;                // User ID register
-    uint32_t  Reserved5[3];           // 0x040 -> 0x48 reserved
-    __IO uint32_t GHWCFG3;            // User HW config3
-    uint32_t  Reserved6;              // 0x050 reserved
-    __IO uint32_t GLPMCFG;            // LPM configuration register
-    __IO uint32_t GPWRDN;             // Power down register
-    __IO uint32_t GDFIFOCFG;          // DFIFO Software Config Register
-    __IO uint32_t GADPCTL;            // ADP timer, control and status register
-    uint32_t  Reserved43[39];         // 0x060 -> 0x9C reserved
-    __IO uint32_t HPTXFSIZ;           // Host periodic tx fifo size reg
-    __IO uint32_t DIEPTXF[0x0F];      // Device periodic transmit FIFO
-} USB_OTG_Core_Registers;
+/*----- MCU Debug Register Address -------------------------------------------*/
+#define DBGMCU_BASE         0xE0042000U
 
-/*----- USB_OTG_Device_Registers ---------------------------------------------*/
-typedef struct {
-  __IO uint32_t DCFG;       // Configuration register 
-  __IO uint32_t DCTL;       // Control register       
-  __IO uint32_t DSTS;       // Status register   
-  uint32_t Reserved0C;      // 0x80C reserved
-  __IO uint32_t DIEPMSK;    // IN endpoint mask register
-  __IO uint32_t DOEPMSK;    // OUT endpoint mask register
-  __IO uint32_t DAINT;      // All endpoints iterrupt register
-  __IO uint32_t DAINTMSK;   // All endpoints iterrupt mask register
-  uint32_t  Reserved20;     // 0x820
-  uint32_t Reserved9;       // 0x824
-  __IO uint32_t DVBUSDIS;   // VBUS discharge time register
-  __IO uint32_t DVBUSPULSE; // VBUS pulsing time register    
-  __IO uint32_t DTHRCTL;    // Threshold control register
-  __IO uint32_t DIEPEMPMSK; // Empty interrupt mask register
-  __IO uint32_t DEACHINT;   // Dedicated EP interrupt register
-  __IO uint32_t DEACHMSK;   // Dedicated EP mask register
-  uint32_t Reserved40;      // Dedicated EP mask register
-  __IO uint32_t DINEP1MSK;  // Dedicated EP mask register
-  uint32_t  Reserved44[15]; // Reserved
-  __IO uint32_t DOUTEP1MSK; // dedicated EP msk           
-} USB_OTG_Device_Registers;
+/*----- USB OTG Register Addresses -------------------------------------------*/
+#define USB_OTG_HS_PERIPH_BASE              0x40040000U
+#define USB_OTG_FS_PERIPH_BASE              0x50000000U
+
+#define USB_OTG_GLOBAL_BASE                 0x0000U
+#define USB_OTG_DEVICE_BASE                 0x0800U
+#define USB_OTG_IN_ENDPOINT_BASE            0x0900U
+#define USB_OTG_OUT_ENDPOINT_BASE           0x0B00U
+#define USB_OTG_EP_REG_SIZE                 0x0020U
+#define USB_OTG_HOST_BASE                   0x0400U
+#define USB_OTG_HOST_PORT_BASE              0x0440U
+#define USB_OTG_HOST_CHANNEL_BASE           0x0500U
+#define USB_OTG_HOST_CHANNEL_SIZE           0x0020U
+#define USB_OTG_PCGCCTL_BASE                0x0E00U
+#define USB_OTG_FIFO_BASE                   0x1000U
+#define USB_OTG_FIFO_SIZE                   0x1000U
+
+/*===== RCC Bit Definitions ==================================================*/
+
+/*----- RCC PLLCFGR Bit Definitions ------------------------------------------*/
+#define RCC_PLLCFGR_PLLM_POS                0U
+#define RCC_PLLCFGR_PLLM_MSK                (0x3FU << RCC_PLLCFGR_PLLM_POS)
+#define RCC_PLLCFGR_PLLM                    RCC_PLLCFGR_PLLM_MSK
+#define RCC_PLLCFGR_PLLM_0                  (0x01U << RCC_PLLCFGR_PLLM)
+#define RCC_PLLCFGR_PLLM_1                  (0x02U << RCC_PLLCFGR_PLLM)
+#define RCC_PLLCFGR_PLLM_2                  (0x04U << RCC_PLLCFGR_PLLM)
+#define RCC_PLLCFGR_PLLM_3                  (0x08U << RCC_PLLCFGR_PLLM)
+#define RCC_PLLCFGR_PLLM_4                  (0x10U << RCC_PLLCFGR_PLLM)
+#define RCC_PLLCFGR_PLLM_5                  (0x20U << RCC_PLLCFGR_PLLM)
+
+#define RCC_PLLCFGR_PLLSRC_POS              22
+#define RCC_PLLCFGR_PLLSRC_MSK              (0x1 << RCC_PLLCFGR_PLLSRC_POS)
+#define RCC_PLLCFGR_PLLSRC                  RCC_PLLCFGR_PLLSRC_MSK
+
+/*----- RCC CFGR Bit Definitions ---------------------------------------------*/
+#define RCC_CFGR_SWS_POS                    2U
+#define RCC_CFGR_SWS_MSK                    (0x3U << RCC_CFGR_SWS_POS)
+#define RCC_CFGR_SWS                        RCC_CFGR_SWS_MSK
+#define RCC_CFGR_SWS_0                      (0x1U) << RCC_CFGR_SWS_POS)
+#define RCC_CFGR_SWS_1                      (0x2U) << RCC_CFGR_SWS_POS)
+#define RCC_CFGR_SWS_HSI                    0x00000000U // HSI selected as clock
+#define RCC_CFGR_SWS_HSE                    0x00000004U // HSE selected as clock
+#define RCC_CFGR_SWS_PLL                    0x00000008U // PLL selected as clock

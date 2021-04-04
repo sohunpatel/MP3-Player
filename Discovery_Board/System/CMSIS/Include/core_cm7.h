@@ -61,6 +61,8 @@
  */
 
 #include "cmsis_version.h"
+#include "defines.h"
+#include "interrupts.h"
 
 /* CMSIS CM7 definitions */
 #define __CM7_CMSIS_VERSION_MAIN  (__CM_CMSIS_VERSION_MAIN)                  /*!< \deprecated [31:16] CMSIS HAL main version */
@@ -1877,7 +1879,7 @@ typedef struct
            priority bits (__NVIC_PRIO_BITS), the smallest possible priority group is set.
   \param [in]      PriorityGroup  Priority grouping field.
  */
-__STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+static inline void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
 {
   uint32_t reg_value;
   uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);             /* only values 0..7 are used          */
@@ -1896,7 +1898,7 @@ __STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
   \details Reads the priority grouping field from the NVIC Interrupt Controller.
   \return                Priority grouping field (SCB->AIRCR [10:8] PRIGROUP field).
  */
-__STATIC_INLINE uint32_t __NVIC_GetPriorityGrouping(void)
+static inline uint32_t __NVIC_GetPriorityGrouping(void)
 {
   return ((uint32_t)((SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) >> SCB_AIRCR_PRIGROUP_Pos));
 }
@@ -1908,7 +1910,7 @@ __STATIC_INLINE uint32_t __NVIC_GetPriorityGrouping(void)
   \param [in]      IRQn  Device specific interrupt number.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+static inline void __NVIC_EnableIRQ(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -1927,7 +1929,7 @@ __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
   \return             1  Interrupt is enabled.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
+static inline uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -1946,7 +1948,7 @@ __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
   \param [in]      IRQn  Device specific interrupt number.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+static inline void __NVIC_DisableIRQ(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -1965,7 +1967,7 @@ __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
   \return             1  Interrupt status is pending.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
+static inline uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -1984,7 +1986,7 @@ __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
   \param [in]      IRQn  Device specific interrupt number.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
+static inline void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -1999,7 +2001,7 @@ __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
   \param [in]      IRQn  Device specific interrupt number.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+static inline void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -2016,7 +2018,7 @@ __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
   \return             1  Interrupt status is active.
   \note    IRQn must not be negative.
  */
-__STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn)
+static inline uint32_t __NVIC_GetActive(IRQn_Type IRQn)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -2038,7 +2040,7 @@ __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn)
   \param [in]  priority  Priority to set.
   \note    The priority cannot be set for every processor exception.
  */
-__STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+static inline void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
 {
   if ((int32_t)(IRQn) >= 0)
   {
@@ -2060,7 +2062,7 @@ __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
   \return             Interrupt Priority.
                       Value is aligned automatically to the implemented priority bits of the microcontroller.
  */
-__STATIC_INLINE uint32_t __NVIC_GetPriority(IRQn_Type IRQn)
+static inline uint32_t __NVIC_GetPriority(IRQn_Type IRQn)
 {
 
   if ((int32_t)(IRQn) >= 0)
@@ -2085,7 +2087,7 @@ __STATIC_INLINE uint32_t __NVIC_GetPriority(IRQn_Type IRQn)
   \param [in]       SubPriority  Subpriority value (starting from 0).
   \return                        Encoded priority. Value can be used in the function \ref NVIC_SetPriority().
  */
-__STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
+static inline uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
 {
   uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);   /* only values 0..7 are used          */
   uint32_t PreemptPriorityBits;
@@ -2112,7 +2114,7 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
   \param [out] pPreemptPriority  Preemptive priority value (starting from 0).
   \param [out]     pSubPriority  Subpriority value (starting from 0).
  */
-__STATIC_INLINE void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* const pPreemptPriority, uint32_t* const pSubPriority)
+static inline void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* const pPreemptPriority, uint32_t* const pSubPriority)
 {
   uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);   /* only values 0..7 are used          */
   uint32_t PreemptPriorityBits;
@@ -2135,7 +2137,7 @@ __STATIC_INLINE void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGr
   \param [in]   IRQn      Interrupt number
   \param [in]   vector    Address of interrupt handler function
  */
-__STATIC_INLINE void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
+static inline void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
 {
   uint32_t *vectors = (uint32_t *)SCB->VTOR;
   vectors[(int32_t)IRQn + NVIC_USER_IRQ_OFFSET] = vector;
@@ -2151,7 +2153,7 @@ __STATIC_INLINE void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
   \param [in]   IRQn      Interrupt number.
   \return                 Address of interrupt handler function
  */
-__STATIC_INLINE uint32_t __NVIC_GetVector(IRQn_Type IRQn)
+static inline uint32_t __NVIC_GetVector(IRQn_Type IRQn)
 {
   uint32_t *vectors = (uint32_t *)SCB->VTOR;
   return vectors[(int32_t)IRQn + NVIC_USER_IRQ_OFFSET];
@@ -2162,7 +2164,7 @@ __STATIC_INLINE uint32_t __NVIC_GetVector(IRQn_Type IRQn)
   \brief   System Reset
   \details Initiates a system reset request to reset the MCU.
  */
-__NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void)
+__NO_RETURN static inline void __NVIC_SystemReset(void)
 {
   __DSB();                                                          /* Ensure all outstanding memory accesses included
                                                                        buffered write are completed before reset */
@@ -2205,7 +2207,7 @@ __NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void)
    - \b  1: Single precision FPU
    - \b  2: Double + Single precision FPU
  */
-__STATIC_INLINE uint32_t SCB_GetFPUType(void)
+static inline uint32_t SCB_GetFPUType(void)
 {
   uint32_t mvfr0;
 
@@ -2264,7 +2266,7 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
   }
 
   SysTick->LOAD  = (uint32_t)(ticks - 1UL);                         /* set reload register */
-  NVIC_SetPriority (SysTick_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
+  NVIC_SetPriority (SysTick_IRQ, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
   SysTick->VAL   = 0UL;                                             /* Load the SysTick Counter Value */
   SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
                    SysTick_CTRL_TICKINT_Msk   |
@@ -2298,7 +2300,7 @@ extern volatile int32_t ITM_RxBuffer;                              /*!< External
   \param [in]     ch  Character to transmit.
   \returns            Character to transmit.
  */
-__STATIC_INLINE uint32_t ITM_SendChar (uint32_t ch)
+static inline uint32_t ITM_SendChar (uint32_t ch)
 {
   if (((ITM->TCR & ITM_TCR_ITMENA_Msk) != 0UL) &&      /* ITM enabled */
       ((ITM->TER & 1UL               ) != 0UL)   )     /* ITM Port #0 enabled */
@@ -2319,7 +2321,7 @@ __STATIC_INLINE uint32_t ITM_SendChar (uint32_t ch)
   \return             Received character.
   \return         -1  No character pending.
  */
-__STATIC_INLINE int32_t ITM_ReceiveChar (void)
+static inline int32_t ITM_ReceiveChar (void)
 {
   int32_t ch = -1;                           /* no character available */
 
@@ -2339,7 +2341,7 @@ __STATIC_INLINE int32_t ITM_ReceiveChar (void)
   \return          0  No character available.
   \return          1  Character available.
  */
-__STATIC_INLINE int32_t ITM_CheckChar (void)
+static inline int32_t ITM_CheckChar (void)
 {
 
   if (ITM_RxBuffer == ITM_RXBUFFER_EMPTY)

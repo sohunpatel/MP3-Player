@@ -6,7 +6,6 @@
  *----------------------------------------------------------------------------*/
 
 /*----- Includes -------------------------------------------------------------*/
-#include "core_cm7.h"
 
 /*----- Interrupt number definitions -----------------------------------------*/
 typedef enum {
@@ -117,4 +116,4 @@ typedef enum {
     I2C4_EV_IRQn            = 95,  // I2C4 Event Interrupt
     I2C4_ER_IRQn            = 96,  // I2C4 Error Interrupt
     SPDIF_RX_IRQn           = 97,  // SPDIF-RX global Interrupt
-} IRQ_Number;
+} IRQn_Type;

@@ -48,18 +48,9 @@ typedef enum
 
 #define VECTOR_TABLE_OFFSET 0x00  /* Vector Table Offset Value */
 
-extern uint32_t SystemCoreClock = 16000000; /* System Core Clock Frequency */
+extern uint32_t SystemCoreClock; /* System Core Clock Frequency */
 extern const uint8_t AHBPrescalerTable[16]; /* AHB Prescaler Table */
 extern const uint8_t APBPrescalerTable[8]; /* APB Prescaler Table */
-
-/*---- Configure Cortex-M7 Processor and Core Peripherals --------------------*/
-#define __CM7_REV               0x0001U
-#define __MPU_PRESENT           1
-#define NVIC_PRIORITY_BITS      4
-#define __Vendor_SysTickConfig  0
-#define __FPU_PRESENT           1
-#define __ICACHE_PRESENT        1
-#define __DCACHE_PRESENT        1
 
 extern void SystemInit();
 extern void SystemCoreClockUpdate();

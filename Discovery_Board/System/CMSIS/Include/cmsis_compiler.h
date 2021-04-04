@@ -52,6 +52,7 @@
  */
 #elif defined ( __GNUC__ )
   #include "cmsis_gcc.h"
+  #define __STATIC_INLINE                        static inline
 
 
 /*

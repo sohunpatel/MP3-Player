@@ -42,15 +42,24 @@ OBJECTS += $(addsuffix .o,$(addprefix $(BUILD_DIR)/$(TARGET),$(basename $(CXXSOU
 # ------------------------------------------------------------------------------
 TARGET_ELF = $(BUILD_DIR)/$(TARGET).elf
 TARGET_HEX = $(BUILD_DIR)/$(TARGET).hex
+TARGET_BIN = $(BUILD_DIR)/$(TARGET).bin
 
 # ------------------------------------------------------------------------------
 # Flags
 # ------------------------------------------------------------------------------
-MCFLAGS  = -mcpu=cortex-m7 -mthumb
-OPTIMIZE = -Os
+MCFLAGS  = -mcpu=cortex-m7 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard
+OPTIMIZE = -Og
 DEFS     = 
-CFLAGS   = -c $(MCFLAGS) $(DEFS) $(OPTIMIZE) $(addprefix -I,$(INC_DIRS))
-CXXFLAGS = -c $(MCFLAGS) $(DEFS) $(OPTIMIZE) $(addprefix -I,$(INC_DIRS)) -U__STRICT_ANSI__
+DEBUG	 = 1
+WARNINGS = -Wall -fdata-sections -ffunction-sections
+CSTD     = -std=c17
+CXXSTD   = -std=c++17
+CFLAGS   = -c $(MCFLAGS) $(DEFS) $(OPTIMIZE) $(addprefix -I,$(INC_DIRS)) $(WARNINGS) $(CSTD)
+CXXFLAGS = -c $(MCFLAGS) $(DEFS) $(OPTIMIZE) $(addprefix -I,$(INC_DIRS)) $(WARNINGS) $(CXXSTD)
+ifeq ($(DEBUG), 1)
+CFLAGS	+= -g -gdwarf-2
+CXXFLAGS+= -g -gdwarf-2
+endif
 LDSCRIPT = $(CURR_DIR)/STM32F746NGHx_FLASH.ld
 LIBS     = -lc -lm -lnosys
 LIBDIR	 =
@@ -59,8 +68,11 @@ LDFLAGS  = $(MCFLAGS) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map
 # ------------------------------------------------------------------------------
 # Build
 # ------------------------------------------------------------------------------
+$(TARGET_BIN): $(TARGET_ELF)
+	$(CP) -O binary -S $< $@
+
 $(TARGET_HEX): $(TARGET_ELF)
-	$(CP) -0 ihex --set-start 0x08000000 $< $@
+	$(CP) -O ihex --set-start 0x08000000 $< $@
 
 $(TARGET_ELF): $(OBJECTS)
 	$(CXX) -o $@ $^ $(LDFLAGS)
@@ -87,7 +99,7 @@ $(BUILD_DIR)/$(TARGET)%.o: %.s
 .PHONY: all flash clean
 
 clean:
-	rm -r $(BUILD_DIR)
+	rm -rf $(BUILD_DIR)
 
 flash: $(TARGET_HEX)
 	st-flash write $(BUILD_DIR)/$(TARGET).bin 0x08000000
