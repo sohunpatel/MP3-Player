@@ -24,5 +24,5 @@ int main() {
     /*----- Start scheduler --------------------------------------------------*/    
     osKernelStart();
 
-    while (true);
+    while (1);
 }
