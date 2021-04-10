@@ -163,30 +163,3 @@
 #define USB_OTG_PCGCCTL_BASE                0x0E00U
 #define USB_OTG_FIFO_BASE                   0x1000U
 #define USB_OTG_FIFO_SIZE                   0x1000U
-
-/*===== RCC Bit Definitions ==================================================*/
-
-/*----- RCC PLLCFGR Bit Definitions ------------------------------------------*/
-#define RCC_PLLCFGR_PLLM_POS                0U
-#define RCC_PLLCFGR_PLLM_MSK                (0x3FU << RCC_PLLCFGR_PLLM_POS)
-#define RCC_PLLCFGR_PLLM                    RCC_PLLCFGR_PLLM_MSK
-#define RCC_PLLCFGR_PLLM_0                  (0x01U << RCC_PLLCFGR_PLLM)
-#define RCC_PLLCFGR_PLLM_1                  (0x02U << RCC_PLLCFGR_PLLM)
-#define RCC_PLLCFGR_PLLM_2                  (0x04U << RCC_PLLCFGR_PLLM)
-#define RCC_PLLCFGR_PLLM_3                  (0x08U << RCC_PLLCFGR_PLLM)
-#define RCC_PLLCFGR_PLLM_4                  (0x10U << RCC_PLLCFGR_PLLM)
-#define RCC_PLLCFGR_PLLM_5                  (0x20U << RCC_PLLCFGR_PLLM)
-
-#define RCC_PLLCFGR_PLLSRC_POS              22
-#define RCC_PLLCFGR_PLLSRC_MSK              (0x1 << RCC_PLLCFGR_PLLSRC_POS)
-#define RCC_PLLCFGR_PLLSRC                  RCC_PLLCFGR_PLLSRC_MSK
-
-/*----- RCC CFGR Bit Definitions ---------------------------------------------*/
-#define RCC_CFGR_SWS_POS                    2U
-#define RCC_CFGR_SWS_MSK                    (0x3U << RCC_CFGR_SWS_POS)
-#define RCC_CFGR_SWS                        RCC_CFGR_SWS_MSK
-#define RCC_CFGR_SWS_0                      (0x1U) << RCC_CFGR_SWS_POS)
-#define RCC_CFGR_SWS_1                      (0x2U) << RCC_CFGR_SWS_POS)
-#define RCC_CFGR_SWS_HSI                    0x00000000U // HSI selected as clock
-#define RCC_CFGR_SWS_HSE                    0x00000004U // HSE selected as clock
-#define RCC_CFGR_SWS_PLL                    0x00000008U // PLL selected as clock
