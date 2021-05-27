@@ -1,9 +1,6 @@
 [submodule "Discovery_Board/libhelix-mp3"]
 	path = Discovery_Board/libhelix-mp3
 	url = https://github.com/ultraembedded/libhelix-mp3.git
-[submodule "Discovery_Board/fatfs"]
-	path = Discovery_Board/fatfs
-	url = https://github.com/abbrev/fatfs.git
 [submodule "Discovery_Board/libopencm3"]
 	path = Discovery_Board/libopencm3
 	url = https://github.com/libopencm3/libopencm3.git
